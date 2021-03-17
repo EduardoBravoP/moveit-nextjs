@@ -1,16 +1,7 @@
-import { GetServerSideProps } from 'next'
-
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { Countdown } from "../components/Countdown";
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
-
-import Head from 'next/head';
-
-import styles from '../styles/pages/Home.module.css'
-import { ChallengeBox } from "../components/ChallengeBox";
-import { CountdownProvider } from "../contexts/CountdownContext";
-import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { GetServerSideProps } from "next";
+import { useSession } from "next-auth/client";
+import Dashboard from "./Dashboard";
+import Login from "./Login";
 
 interface HomeProps {
   level: number;
@@ -19,29 +10,12 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
-  return (
-    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>
-      <div className={styles.container}>
-        <Head>
-          <title>Inicio | move.it</title>
-        </Head>
-        
-        <ExperienceBar />
+  const [session] = useSession()
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+  return (
+    <>
+      {!session ? <Login /> : <Dashboard {...props} />}
+    </>
   )
 }
 
