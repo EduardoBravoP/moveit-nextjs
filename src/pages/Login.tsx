@@ -3,7 +3,13 @@ import { signIn } from 'next-auth/client'
 
 import styles from '../styles/pages/Login.module.css';
 
+
 export default function Login() {
+  
+  const handleSignIn = async () => {
+    await signIn('github')
+  }
+
   return <>
     <div className={styles.container}>
       <div className={styles.leftSide}>
@@ -23,7 +29,7 @@ export default function Login() {
             <p>Faça login com seu Github para começar</p>
           </div>
 
-          <button type="button" onClick={() => signIn('github')}>
+          <button type="button" onClick={handleSignIn}>
             <div className={styles.fade}>
               <p>Fazer login</p>
             </div>

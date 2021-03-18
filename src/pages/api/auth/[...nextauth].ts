@@ -1,4 +1,6 @@
+import axios from 'axios'
 import NextAuth from 'next-auth'
+import { signIn, useSession } from 'next-auth/client'
 import Providers from 'next-auth/providers'
 
 export default NextAuth({
@@ -8,4 +10,11 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
+  events: {
+    async signIn(message) {
+      const userName = message.user.name
+
+      await axios.post('/api/create', {name: userName}, {baseURL: process.env.NEXTAUTH_URL})
+    }
+  }
 })

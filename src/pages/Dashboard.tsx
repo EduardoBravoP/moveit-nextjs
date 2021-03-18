@@ -1,4 +1,3 @@
-import { signOut } from "next-auth/client";
 import Head from "next/head";
 import { ChallengeBox } from "../components/ChallengeBox";
 import { CompletedChallenges } from "../components/CompletedChallenges";
