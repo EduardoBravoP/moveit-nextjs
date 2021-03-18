@@ -5,6 +5,7 @@ import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from "../components/Profile";
+import Sidebar from "../components/Sidebar";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import styles from '../styles/pages/Home.module.css'
@@ -23,13 +24,14 @@ export default function Dashboard (props: HomeProps) {
         <title>Inicio | move.it</title>
       </Head>
       
+      <Sidebar homeActive />
+
       <ExperienceBar />
 
       <CountdownProvider>
         <section>
           <div>
             <Profile />
-            <button onClick={() => signOut()}>deslogar</button>
             <CompletedChallenges />
             <Countdown />
           </div>
