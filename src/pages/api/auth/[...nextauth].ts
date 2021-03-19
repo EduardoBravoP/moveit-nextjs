@@ -14,7 +14,7 @@ export default NextAuth({
     async signIn(message) {
       const userName = message.user.name
 
-      await axios.post('/api/create', {name: userName}, {baseURL: process.env.NEXTAUTH_URL})
+      await axios.post('/api/create', {name: userName, image: message.user.image}, {baseURL: process.env.NEXTAUTH_URL})
     }
   }
 })

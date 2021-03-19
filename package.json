@@ -17,7 +17,8 @@
     "next-auth": "^3.13.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-icons": "^4.2.0"
+    "react-icons": "^4.2.0",
+    "react-spinners": "^0.10.6"
   },
   "devDependencies": {
     "@types/mongodb": "^3.6.10",

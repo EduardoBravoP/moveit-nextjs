@@ -26,7 +26,7 @@ export default function Sidebar({homeActive = false}: Props) {
         </button>
       </div>
 
-      <button type="button" onClick={() => signOut()}>
+      <button type="button" onClick={() => signOut({redirect: true, callbackUrl: '/'})}>
         <FiPower color="#8f8f8f" size={32} />
       </button>
     </div>

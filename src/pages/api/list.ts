@@ -5,6 +5,7 @@ let cachedDb: Db = null;
 
 async function connectToDatabase(uri: string) {
   if (cachedDb) {
+    console.log('cache')
     return cachedDb;
   }
   
@@ -21,26 +22,17 @@ async function connectToDatabase(uri: string) {
 }
 
 export default async function (request: VercelRequest, response: VercelResponse) {
-  const { name, image } = request.body
-
   const db = await connectToDatabase(process.env.MONGODB_URI)
 
   const collection = db.collection('users')
 
-  const user = await collection.findOne({name})
+  const cursor = collection.find()
 
-  if (user) {
-    return response.status(201).json({user})
-  }
+  const users = await cursor.toArray()
 
-  await collection.insertOne({
-    name,
-    image,
-    level: 1,
-    CompletedChallenges: 0,
-    experience: 0,
-    subscribedAt: new Date()
-  })
-  
-  return response.status(201).json({message: 'Created!'})
+  const top10 = users.sort(function (user1, user2) {
+    return user2.experience - user1.experience
+  }).slice(0, 10)
+
+  return response.json(top10);
 }

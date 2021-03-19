@@ -1,0 +1,94 @@
+.container {
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container h1 {
+  color: #2E384D;
+  font-weight: 600;
+  font-size: 36px;
+
+  margin-bottom: 40px;
+}
+
+.table {
+ border-collapse: separate;
+ border-spacing: 0 8px;
+}
+
+.table th {
+  color: #666666;
+  font-weight: 700;
+  font-size: 14px;
+  opacity: 0.5;
+  padding-bottom: 18px;
+  text-align: start;
+}
+
+.table th.thUser {
+  padding-left: 15px;
+}
+
+.table tr > td {
+  background: #fff;
+  
+}
+
+.table td.position {
+  width: 72px;
+  border-right: 5px solid #F2F3F5;
+  text-align: center;
+
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.table td.user {
+  padding: 16px 24px;
+  display: flex;
+}
+
+.table td.user div.info {
+  margin-left: 20px;
+}
+
+.table td.user .image {
+  border-radius: 50%;
+}
+
+.table td.user strong {
+  color: #2E384D;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.table td.user .level {
+  margin-top: 10px;
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table td > .challenges {
+  display: flex;
+}
+
+.table td span {
+  color: #5965E0;
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.table td span {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.table td > .experience {
+  display: flex;
+}
