@@ -23,8 +23,6 @@ async function connectToDatabase(uri: string) {
 export default async function (request: VercelRequest, response: VercelResponse) {
   const { name } = request.query
 
-  console.log(name)
-
   const db = await connectToDatabase(process.env.MONGODB_URI)
 
   const collection = db.collection('users')

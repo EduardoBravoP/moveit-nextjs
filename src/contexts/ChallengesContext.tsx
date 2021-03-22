@@ -102,7 +102,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
 
-    axios.post('/api/update', {experience: finalExperience, name: session.user.name, challengesCompleted, level})
+    axios.post('/api/update', {experience: finalExperience, name: session.user.name, CompletedChallenges: challengesCompleted + 1, level})
   }
   
   return (

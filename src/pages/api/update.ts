@@ -21,15 +21,15 @@ async function connectToDatabase(uri: string) {
 }
 
 export default async function (request: VercelRequest, response: VercelResponse) {
-  const { completedChallenges, level, experience, name } = request.body
+  const { CompletedChallenges, level, experience, name } = request.body
 
   const db = await connectToDatabase(process.env.MONGODB_URI)
 
   const collection = db.collection('users')
 
-  console.log('chegou')
-
-  const user = await collection.findOneAndUpdate({name}, [completedChallenges, level, experience])
+  const user = await collection.updateOne({name}, {
+    $set: { CompletedChallenges, level, experience }
+  })
   
   return response.status(201).json({user})
 }
