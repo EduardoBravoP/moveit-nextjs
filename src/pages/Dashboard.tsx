@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import { ChallengeBox } from "../components/ChallengeBox";
 import { CompletedChallenges } from "../components/CompletedChallenges";
@@ -11,35 +12,35 @@ import styles from '../styles/pages/Home.module.css'
 
 interface HomeProps {
   level: number;
-  currentExperience: number;
-  challengesCompleted: number;
+  experience: number;
+  CompletedChallenges: number;
 }
 
 export default function Dashboard (props: HomeProps) {
   return (
-    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>
-    <div className={styles.container}>
-      <Head>
-        <title>Inicio | move.it</title>
-      </Head>
-      
-      <Sidebar homeActive />
+    <ChallengesProvider level={props.level} currentExperience={props.experience} challengesCompleted={props.CompletedChallenges}>
+      <div className={styles.container}>
+        <Head>
+          <title>Inicio | move.it</title>
+        </Head>
+        
+        <Sidebar homeActive />
 
-      <ExperienceBar />
+        <ExperienceBar />
 
-      <CountdownProvider>
-        <section>
-          <div>
-            <Profile />
-            <CompletedChallenges />
-            <Countdown />
-          </div>
-          <div>
-            <ChallengeBox />
-          </div>
-        </section>
-      </CountdownProvider>
-    </div>
-  </ChallengesProvider>
+        <CountdownProvider>
+          <section>
+            <div>
+              <Profile />
+              <CompletedChallenges />
+              <Countdown />
+            </div>
+            <div>
+              <ChallengeBox />
+            </div>
+          </section>
+        </CountdownProvider>
+      </div>
+    </ChallengesProvider>
   )
 }

@@ -2,6 +2,9 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { apiResolver } from 'next/dist/next-server/server/api-utils';
+import axios from 'axios';
+import { useSession } from 'next-auth/client';
 
 interface Challenge {
   type: 'body' | 'eye';
@@ -32,6 +35,8 @@ interface ChallengesProviderProps {
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
+  const [session] = useSession()
+
   const [level, setLevel] = useState(rest.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
@@ -96,6 +101,8 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setCurrentExperience(finalExperience)
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
+
+    axios.post('/api/update', {experience: finalExperience, name: session.user.name, challengesCompleted, level})
   }
   
   return (

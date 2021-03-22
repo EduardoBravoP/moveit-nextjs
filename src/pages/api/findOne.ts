@@ -21,17 +21,15 @@ async function connectToDatabase(uri: string) {
 }
 
 export default async function (request: VercelRequest, response: VercelResponse) {
+  const { name } = request.query
+
+  console.log(name)
+
   const db = await connectToDatabase(process.env.MONGODB_URI)
 
   const collection = db.collection('users')
 
-  const cursor = collection.find()
+  const user = await collection.findOne({name})
 
-  const users = await cursor.toArray()
-
-  const top10 = users.sort(function (user1, user2) {
-    return user2.experience - user1.experience
-  }).slice(0, 10)
-
-  return response.json(top10);
+  return response.json(user);
 }
