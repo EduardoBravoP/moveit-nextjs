@@ -43,7 +43,7 @@ export default function Leaderboard() {
           </thead>
           <tbody>
             {top10.map((user, index) => (
-              <tr key={user.id}>
+              <tr key={user.name}>
                 <td className={styles.position}>
                   {index + 1}
                 </td>

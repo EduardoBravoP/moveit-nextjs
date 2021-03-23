@@ -1,0 +1,73 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  padding: 100px;
+  
+  display: flex;
+}
+
+.leftContainer {
+  width: 50%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.rightContainer {
+  width: 50%;
+
+  margin-left: 200px;
+}
+
+.level {
+  color: #5965E0;
+  font-weight: 700;
+  font-size: 310px;
+  text-shadow: 0px 10px 16px rgba(89, 101, 224, 0.3);
+}
+
+.levelBackground {
+  width: 100%;
+  background: url('/icons/levelup.svg') no-repeat center;
+  background-size: 400px;
+}
+
+.bigText {
+  font-weight: 600;
+  font-size: 56px;
+  color: #2E384D;
+}
+
+.container h2 {
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.container span {
+  color: #5965E0;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 40px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.challenges {
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid #DCDDE0;
+  margin-bottom: 40px;
+}
+
+.experience {
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid #DCDDE0;
+  margin-bottom: 200px;
+}

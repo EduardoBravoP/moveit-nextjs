@@ -29,9 +29,5 @@ export default async function (request: VercelRequest, response: VercelResponse)
 
   const users = await cursor.toArray()
 
-  const top10 = users.sort(function (user1, user2) {
-    return user2.CompletedChallenges - user1.CompletedChallenges
-  }).slice(0, 10)
-
-  return response.json(top10);
+  return response.json(users);
 }

@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import Cookies from 'js-cookie';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
 import { apiResolver } from 'next/dist/next-server/server/api-utils';
@@ -50,12 +49,6 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     Notification.requestPermission();
   }, [])
 
-  useEffect(() => {
-    Cookies.set('level', String(level))
-    Cookies.set('currentExperience', String(currentExperience))
-    Cookies.set('challengesCompleted', String(challengesCompleted))
-  }, [level, currentExperience, challengesCompleted])
-
   function levelUp() {
     setLevel(level + 1);
     setIsLevelUpModalOpen(true)
@@ -84,7 +77,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setActiveChallenge(null);
   }
 
-  function completeChallenge() {
+  async function completeChallenge() {
     if (!activeChallenge) {
       return;
     }
@@ -96,13 +89,20 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel;
       levelUp();
+      
+      setCurrentExperience(finalExperience)
+      setActiveChallenge(null);
+      setChallengesCompleted(challengesCompleted + 1);
+
+      await axios.post('/api/update', {experience: finalExperience, name: session.user.name, CompletedChallenges: challengesCompleted + 1, level: level + 1})
+      return
     }
 
     setCurrentExperience(finalExperience)
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
 
-    axios.post('/api/update', {experience: finalExperience, name: session.user.name, CompletedChallenges: challengesCompleted + 1, level})
+    await axios.post('/api/update', {experience: finalExperience, name: session.user.name, CompletedChallenges: challengesCompleted + 1, level})
   }
   
   return (
