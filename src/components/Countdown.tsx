@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContext';
+import { useContext } from 'react';
+import Image from 'next/image';
 import { CountdownContext } from '../contexts/CountdownContext';
 import styles from '../styles/components/Countdown.module.css';
+import { FaPlay } from 'react-icons/fa'
+import { FiX } from 'react-icons/fi'
 
 let countdownTimeout: NodeJS.Timeout;
 
@@ -30,17 +32,20 @@ export function Countdown() {
           disabled
           className={styles.countdownButton} 
         >
-          Ciclo Encerrado
+          <p>Ciclo encerrado</p>
+          <Image width={22} height={22} src="/icons/Correct.svg" />
         </button>
       ) : (
         <>
           { isActive ? (
             <button type="button" className={`${styles.countdownButton} ${styles.countdownButtonActive}`} onClick={resetCountdown}>
-              Abandonar ciclo
+              <p>Abandonar ciclo</p>
+              <FiX size={24} color="#000" />
             </button>
           ) : (
             <button type="button" className={styles.countdownButton} onClick={startCountdown}>
-              Iniciar um ciclo
+              <p>Iniciar um ciclo</p>
+              <FaPlay size={17} color="#fff" />
             </button>
           )}
         </>

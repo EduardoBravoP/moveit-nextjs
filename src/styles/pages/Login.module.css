@@ -73,10 +73,7 @@
 
   display: flex;
   align-items: center;
-}
-
-.fade:hover {
-  border: 2px solid #414AA3;
+  transition: 0.2s;
 }
 
 .fade p {
@@ -93,4 +90,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.2s;
+}
+
+.loginContainer button:hover .fade {
+  border: 2px solid #414AA3;
+}
+
+.loginContainer button:hover .solid {
+  background: #4CD62B;
 }

@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .container {
@@ -16,7 +17,7 @@
   width: 100%;
   max-width: 400px;
   padding: 2rem 3rem;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   text-align: center;
   position: relative;
@@ -47,4 +48,40 @@
   background: transparent;
   border: 0;
   font-size: 0;
+}
+
+.share {
+  width: 400px;
+  height: 80px;
+  background: #e3f7ff;
+  border: 0;
+  border-top: 1px solid #DCDDE0;
+  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.05);
+  border-radius: 0px 0px 5px 5px;
+  padding: 0 50px 0 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  transition: 0.2s;
+}
+
+.share p {
+  color: #2AA9E0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.share:hover {
+  background: #2AA9E0;
+}
+
+.share:hover p {
+  color: #fff;
+}
+
+.share:hover svg {
+  fill: #fff;
+  stroke: #fff;
 }
