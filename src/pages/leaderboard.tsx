@@ -16,9 +16,8 @@ export default function Leaderboard() {
 
   return (
     <>
-      <Sidebar />
-
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.dark}`}>
+        <Sidebar />
         <h1>Leaderboard</h1>
 
        {!top10 ? (

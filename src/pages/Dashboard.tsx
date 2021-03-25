@@ -19,7 +19,7 @@ interface HomeProps {
 export default function Dashboard (props: HomeProps) {
   return (
     <ChallengesProvider level={props.level} currentExperience={props.experience} challengesCompleted={props.CompletedChallenges}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.dark}`}>
         <Head>
           <title>Inicio | move.it</title>
         </Head>

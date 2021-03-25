@@ -1,11 +1,24 @@
 .container {
   height: 100vh;
-  max-width: 992px;
+  width: 100vw;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 40px 250px;
+  background: var(--background);
 
   display: flex;
   flex-direction: column;
+}
+
+.container.dark {
+  --white: #1D1D1D;
+  --background: #121212;
+  --gray-line: #373737;
+  --text: #A6A3A8;
+  --title: #c3c3c3;
+  --red: #CF6679;
+  --green: #4cd62b;
+  --share-background: #242424;
+  --modal-background: rgba(56, 56, 56, 0.808);
 }
 
 .container section {

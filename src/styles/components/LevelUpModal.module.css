@@ -1,5 +1,5 @@
 .overlay {
-  background: rgba(242, 243, 245, 0.8);
+  background: var(--modal-background);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -53,9 +53,9 @@
 .share {
   width: 400px;
   height: 80px;
-  background: #e3f7ff;
+  background: var(--share-background);
   border: 0;
-  border-top: 1px solid #DCDDE0;
+  border-top: 1px solid var(--gray-line);
   box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.05);
   border-radius: 0px 0px 5px 5px;
   padding: 0 50px 0 50px;
@@ -68,20 +68,20 @@
 }
 
 .share p {
-  color: #2AA9E0;
+  color: var(--blue-twitter);
   font-weight: 600;
   font-size: 20px;
 }
 
 .share:hover {
-  background: #2AA9E0;
+  background: var(--blue-twitter);
 }
 
 .share:hover p {
-  color: #fff;
+  color: var(--white);
 }
 
 .share:hover svg {
-  fill: #fff;
-  stroke: #fff;
+  fill: var(--white);
+  stroke: var(--white);
 }

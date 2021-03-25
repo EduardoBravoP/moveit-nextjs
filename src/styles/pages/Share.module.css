@@ -22,7 +22,7 @@
 }
 
 .level {
-  color: #5965E0;
+  color: var(--blue);
   font-weight: 700;
   font-size: 310px;
   text-shadow: 0px 10px 16px rgba(89, 101, 224, 0.3);
@@ -37,37 +37,37 @@
 .bigText {
   font-weight: 600;
   font-size: 56px;
-  color: #2E384D;
+  color: var(--title);
 }
 
 .container h2 {
   font-weight: 700;
   font-size: 24px;
-  color: #666;
+  color: var(--text);
   opacity: 0.5;
   margin-bottom: 10px;
 }
 
 .container span {
-  color: #5965E0;
+  color: var(--blue);
   font-size: 40px;
   font-weight: 500;
 }
 
 .description {
   font-size: 40px;
-  color: #666666;
+  color: var(--text);
   font-weight: 500;
 }
 
 .challenges {
   padding-bottom: 20px;
-  border-bottom: 1.5px solid #DCDDE0;
+  border-bottom: 1.5px solid var(--gray-line);
   margin-bottom: 40px;
 }
 
 .experience {
   padding-bottom: 20px;
-  border-bottom: 1.5px solid #DCDDE0;
+  border-bottom: 1.5px solid var(--gray-line);
   margin-bottom: 200px;
 }

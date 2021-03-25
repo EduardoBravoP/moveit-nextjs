@@ -1,14 +1,27 @@
 .container {
-  max-width: 992px;
+  width: 100vw;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 40px 250px;
+  background: var(--background);
 
   display: flex;
   flex-direction: column;
 }
 
+.container.dark {
+  --white: #1D1D1D;
+  --background: #121212;
+  --gray-line: #373737;
+  --text: #A6A3A8;
+  --title: #c3c3c3;
+  --red: #CF6679;
+  --green: #4cd62b;
+  --share-background: #242424;
+  --modal-background: rgba(56, 56, 56, 0.808);
+}
+
 .container h1 {
-  color: #2E384D;
+  color: var(--title);
   font-weight: 600;
   font-size: 36px;
 
@@ -21,7 +34,7 @@
 }
 
 .table th {
-  color: #666666;
+  color: var(--text);
   font-weight: 700;
   font-size: 14px;
   opacity: 0.5;
@@ -34,13 +47,13 @@
 }
 
 .table tr > td {
-  background: #fff;
+  background: var(--white);
   
 }
 
 .table td.position {
   width: 72px;
-  border-right: 5px solid #F2F3F5;
+  border-right: 5px solid var(--background);
   text-align: center;
 
   font-weight: 500;
@@ -61,7 +74,7 @@
 }
 
 .table td.user strong {
-  color: #2E384D;
+  color: var(--title);
   font-weight: 600;
   font-size: 20px;
 }
@@ -78,7 +91,7 @@
 }
 
 .table td span {
-  color: #5965E0;
+  color: var(--blue);
   font-weight: 500;
   font-size: 16px;
   margin-right: 5px;
