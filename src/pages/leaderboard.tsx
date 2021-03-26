@@ -1,11 +1,14 @@
 import axios from 'axios';
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Sidebar from "../components/Sidebar";
 import styles from '../styles/pages/leaderboard.module.css'
 import SyncLoader from 'react-spinners/SyncLoader';
+import { ThemeContext, ThemeProvider } from '../contexts/ThemeContext';
 
 export default function Leaderboard() {
+  const { isDark } = useContext(ThemeContext)
+
   const [top10, setTop10] = useState(null);
   
   useEffect(() => {
@@ -13,15 +16,18 @@ export default function Leaderboard() {
       setTop10(response.data)
     })
   }, [])
+  console.log(isDark)
 
   return (
     <>
-      <div className={`${styles.container} ${styles.dark}`}>
+      <div className={`${styles.container} ${isDark ? styles.dark : ''}`}>
         <Sidebar />
         <h1>Leaderboard</h1>
 
        {!top10 ? (
-        <SyncLoader color="#5965E0" loading={true} size={15} />
+        <div className={isDark ? styles.loadingContainer : ''}>
+          <SyncLoader color="#5965E0" loading={true} size={15} />
+        </div>
        ) : (
         <table cellSpacing="0" className={styles.table}>
           <thead>
