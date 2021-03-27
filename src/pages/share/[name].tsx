@@ -5,6 +5,7 @@ import Image from 'next/image'
 import SyncLoader from 'react-spinners/SyncLoader';
 import {css} from '@emotion/core'
 import style from '../../styles/pages/Share.module.css'
+import { Db, MongoClient } from 'mongodb';
 
 interface UserProps {
   user: User
@@ -14,6 +15,25 @@ interface User {
   level: number;
   CompletedChallenges: number;
   experience: number;
+}
+
+let cachedDb: Db = null;
+
+async function connectToDatabase(uri: string) {
+  if (cachedDb) {
+    return cachedDb;
+  }
+  
+  const client = await MongoClient.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+
+  const db = client.db('moveit');
+
+  cachedDb = db;
+
+  return db;
 }
 
 const styles = css`
@@ -56,10 +76,15 @@ export default function User({user}: UserProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await axios.get('/api/listAll', {baseURL: process.env.NEXTAUTH_URL})
-  const data = await response.data
+  const db = await connectToDatabase(process.env.MONGODB_URI)
 
-  const paths = data.map(user => {
+  const collection = db.collection('users')
+
+  const cursor = collection.find()
+
+  const users = await cursor.toArray()
+
+  const paths = users.map(user => {
     return { params: { name: user.name }}
   })
   
@@ -72,12 +97,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { name } = context.params
   
-  const response = await axios.get('/api/findOne', {params: {name}, baseURL: process.env.NEXTAUTH_URL})
-  const data = await response.data
+  const db = await connectToDatabase(process.env.MONGODB_URI)
+
+  const collection = db.collection('users')
+
+  const user = await collection.findOne({name})
+
+  delete user._id
+  delete user.subscribedAt
 
   return {
     props: {
-      user: data
+      user
     },
     revalidate: 1500
   }

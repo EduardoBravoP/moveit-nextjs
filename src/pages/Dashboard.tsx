@@ -1,4 +1,3 @@
-import axios from "axios";
 import Head from "next/head";
 import { useContext } from "react";
 import { ChallengeBox } from "../components/ChallengeBox";
@@ -19,9 +18,9 @@ interface HomeProps {
   CompletedChallenges: number;
 }
 
-export default function Dashboard (props: HomeProps) {
+export default function Dashboard (props) {
   const { isDark, toggleTheme } = useContext(ThemeContext)
-  
+
   return (
     <ChallengesProvider level={props.level} currentExperience={props.experience} challengesCompleted={props.CompletedChallenges}>
       <div className={`${styles.container} ${isDark ? styles.dark : ''}`}> 
