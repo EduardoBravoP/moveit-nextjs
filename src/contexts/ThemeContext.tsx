@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import usePersistedState from "./usePersistedState";
 
 interface ThemeContextData {
   isDark: boolean;
@@ -9,7 +10,7 @@ export const ThemeContext = createContext({} as ThemeContextData)
 
 export function ThemeProvider({ children }) {
 
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = usePersistedState('isDark', true);
 
   function toggleTheme() {
     setIsDark(!isDark);
